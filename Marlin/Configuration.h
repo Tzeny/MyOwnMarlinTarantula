@@ -118,7 +118,7 @@
 /**
  * Margin around perimiter of bed for probing (will not probe outside this margin)
  */
-#define BED_MARGIN         1
+#define BED_MARGIN         50
 
 /**
  * Servo probe deploy and stow angles
