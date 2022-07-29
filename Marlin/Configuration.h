@@ -28,7 +28,7 @@
 
 ***********************************************************************/
 
-#define PRINTER_NAME "TEVO Tarantula (EasyConfig)"  // Change this to whatever you wish, or leave it as it is.
+#define PRINTER_NAME "MMG 3D Printer"  // Change this to whatever you wish, or leave it as it is.
                                                     // NOTE: Whatever you put here will have " Ready..." appended to it.
 
 /**
@@ -55,8 +55,10 @@
  * Offset from endpoints to get nozzle to 0,0 (front/left of bed)
  * (How to center prints: https://github.com/JimBrown/MarlinTarantula/wiki/How-to-center-your-prints-(EasyConfig))
  */
-#define NOZZLE_X          0
-#define NOZZLE_Y          0
+#define NOZZLE_X          12
+#define NOZZLE_Y          15
+#define NOZZLE_Z          0.9
+//#define MANUAL_Z_HOME_POS NOZZLE_Z/ // Distance between the nozzle to printbed after homing
 
 /**
  * Minimal Z height (in mm) before homing (G28) for Z clearance above the bed, clamps, ...
@@ -81,7 +83,7 @@
  * If a Z-Probe type is selected, a Bed Leveling type other than MANUAL must be selected.
  */
 //#define BLTOUCH       // ANTClabs BLTouch sensor (might also work with clones)
-//#define SN04          // Green sensor
+#define SN04          // Green sensor
 //#define INDUCTIVE_NO  // Normally open inductive sensor
 //#define INDUCTIVE_NC  // Normally closed inductive sensor
 //#define SERVO_PROBE   // Endstop switch on rotating arm. Set servo angles!
@@ -93,9 +95,9 @@
  */
 //#define TRIPOINT
 //#define LINEAR
-//#define BILINEAR
+#define BILINEAR
 //#define UBL
-#define MANUAL
+//#define MANUAL
 
 /**
  * Z-Probe offset from nozzle (https://github.com/JimBrown/MarlinTarantula/wiki/How-to-determine-your-Z-Probe-offset)
@@ -103,8 +105,8 @@
  * If you have a dual nozzle the offsets are calculated from the primary nozzle (the one plugged in to E0)
  */
 #define SENSOR_LEFT        0
-#define SENSOR_RIGHT       0
-#define SENSOR_FRONT       0
+#define SENSOR_RIGHT       45
+#define SENSOR_FRONT       50
 #define SENSOR_BEHIND      0
 
 /**
@@ -1284,7 +1286,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { SENSOR_RIGHT - SENSOR_LEFT, SENSOR_BEHIND - SENSOR_FRONT, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { SENSOR_RIGHT - SENSOR_LEFT, SENSOR_BEHIND - SENSOR_FRONT, -0.8 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1298,6 +1300,8 @@
 
 // Feedrate (mm/m) for the "accurate" probe of each point
 #define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 3)
+
+//#define Z_PROBE_OFFSET_FROM_EXTRUDER -0.8
 
 /**
  * Multiple Probing
@@ -1442,12 +1446,12 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 200
-#if ENABLED(LARGE_BED)
-  #define Y_BED_SIZE 280
-#else
-  #define Y_BED_SIZE 200
-#endif
+#define X_BED_SIZE 220
+//#if ENABLED(LARGE_BED)
+//  #define Y_BED_SIZE 280
+//#else
+#define Y_BED_SIZE 220
+//#endif
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0 - XTRA_BED_LEFT
@@ -1455,7 +1459,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE + XTRA_BED_RIGHT
 #define Y_MAX_POS Y_BED_SIZE + XTRA_BED_FRONT
-#define Z_MAX_POS 200
+#define Z_MAX_POS 190
 
 /**
  * Software Endstops
@@ -1743,7 +1747,7 @@
 // For DELTA this is the top-center of the Cartesian print volume.
 #define MANUAL_X_HOME_POS NOZZLE_X
 #define MANUAL_Y_HOME_POS NOZZLE_Y
-//#define MANUAL_Z_HOME_POS 0 // Distance between the nozzle to printbed after homing
+//#define MANUAL_Z_HOME_POS NOZZLE_Z // Distance between the nozzle to printbed after homing
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
 //
